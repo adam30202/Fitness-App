@@ -17,6 +17,7 @@ function App() {
 
           <section id="navigation">
             <a href="/">Home</a>
+            <a href="/sign-up">Sign Up</a>
             <a href="/free">Free Component</a>
             <a href="/auth">Auth Component</a>
           </section>
@@ -27,6 +28,7 @@ function App() {
           <Route element={<AuthComponent />} path="/auth"/>
         </Route>
         <Route element={ <Login />} path="/"/>
+        <Route element={ <Register />} path="/sign-up"/>
         <Route element={<FreeComponent />} path="/free"/>
       </Routes>
       </>
