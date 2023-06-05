@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { Container, Col, Row } from "react-bootstrap";
 import './App.css'
+import Register from "./components/Register";
+import Login from './components/Login';
+import FreeComponent from "./components/FreeComponent";
+import AuthComponent from "./components/AuthComponent";
+import ProtectedRoutes from "./components/ProtectedRoutes";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <Row>
+        <Col className="text-center">
+          <h1>React Authentication Tutorial</h1>
+
+          <section id="navigation">
+            <a href="/">Home</a>
+            <a href="/free">Free Component</a>
+            <a href="/auth">Auth Component</a>
+          </section>
+        </Col>
+      </Row>
+      <Routes>
+        <Route element={<ProtectedRoutes />}>
+          <Route element={<AuthComponent />} path="/auth"/>
+        </Route>
+        <Route element={ <Login />} path="/"/>
+        <Route element={<FreeComponent />} path="/free"/>
+      </Routes>
+      </>
+  );
 }
 
 export default App

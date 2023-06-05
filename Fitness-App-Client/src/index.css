@@ -55,15 +55,15 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+#navigation{
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+#navigation a{
+  margin-right: 10%;
+}
+
+#navigation a:last-child{
+  margin-right: 0;
 }
