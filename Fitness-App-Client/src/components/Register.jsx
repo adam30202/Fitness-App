@@ -1,13 +1,21 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 
-const Register = () => {
+
+
+const Register = ({ checkForLogin }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [register, setRegister] = useState(false);
+
+    const navigate = useNavigate();
+
+    const cookies = new Cookies();
 
     const _handleSubmit = (e) => {
         e.preventDefault();
@@ -24,6 +32,13 @@ const Register = () => {
         axios(configuration)
             .then((result) => {
                 setRegister(true);
+                checkForLogin(true); // passed login status back to app
+                cookies.set("TOKEN", result.data.token, {
+                    path: "/",
+                })
+                navigate("/auth");
+
+
               })
               .catch((error) => {
                 error = new Error();

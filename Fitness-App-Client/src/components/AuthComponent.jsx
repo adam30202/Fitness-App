@@ -4,14 +4,14 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const AuthComponent = () => {
+const AuthComponent = ({ checkForLogin }) => {
 
     const navigate = useNavigate();
     // logout
     const logout = () => {
     // destroys the cookie
         cookies.remove("TOKEN", { path: "/" });
-
+        checkForLogin(false) // passed login status back to app
         navigate("/")
     }
 

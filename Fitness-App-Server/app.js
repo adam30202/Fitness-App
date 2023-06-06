@@ -38,10 +38,21 @@ app.post("/register", (req, res) => {
             });
             user
                 .save()
-                .then((result) => {
+                .then((result) => {  
+                    
+                    // Creates JWT Token to auto sign in new user
+                    const token = jwt.sign(
+                        {
+                            userId: this._id,
+                            userEmail: this.email,
+                        },
+                        "RANDOM-TOKEN",
+                        { expiresIn: "24hr" }
+                    );
                     res.status(201).send({
                         message: "User created successfully.",
                         result,
+                        token,
                     });
                 })
                 .catch((error) => {
@@ -71,7 +82,7 @@ app.post("/login", (req, res) => {
                     });
                 }
             
-                // Creats JWT Token
+                // Creates JWT Token
                 const token = jwt.sign(
                     {
                         userId: user._id,

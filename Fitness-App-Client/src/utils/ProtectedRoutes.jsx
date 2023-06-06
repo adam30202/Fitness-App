@@ -8,7 +8,6 @@ export default function ProtectedRoutes() {
 
     // gets cookie from browser if logged in
     const token = cookies.get("TOKEN");
-    console.log(token)
 
   return (
     token ? <Outlet /> :  <Navigate to="/" />

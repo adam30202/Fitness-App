@@ -1,6 +1,6 @@
 import React from "react";
 
-const FreeComponent = () => {
+const Home = () => {
   return (
     <div>
       <h1 className="text-center">Free Component</h1>
@@ -8,4 +8,4 @@ const FreeComponent = () => {
   );
 }
 
-export default FreeComponent;
+export default Home;

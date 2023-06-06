@@ -1,35 +1,32 @@
-import { Container, Col, Row } from "react-bootstrap";
-import './App.css'
+import './App.css';
 import Register from "./components/Register";
 import Login from './components/Login';
-import FreeComponent from "./components/FreeComponent";
+import Home from "./views/Home";
 import AuthComponent from "./components/AuthComponent";
-import ProtectedRoutes from "./components/ProtectedRoutes";
+import Navbar from './components/Navbar';
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
+import { useState } from 'react'
 
 function App() {
 
+  const [ isLoggedIn, setIsloggedIn ] = useState(false);
+
+  const checkForLogin = (result) => {
+    setIsloggedIn(result)
+  }
+  
+
   return (
     <>
-      <Row>
-        <Col className="text-center">
-          <h1>React Authentication Tutorial</h1>
-
-          <section id="navigation">
-            <a href="/">Home</a>
-            <a href="/sign-up">Sign Up</a>
-            <a href="/free">Free Component</a>
-            <a href="/auth">Auth Component</a>
-          </section>
-        </Col>
-      </Row>
+      <Navbar isLoggedIn={isLoggedIn}/>
       <Routes>
         <Route element={<ProtectedRoutes />}>
-          <Route element={<AuthComponent />} path="/auth"/>
+          <Route element={<AuthComponent checkForLogin={checkForLogin}/>} path="/auth"/>
         </Route>
-        <Route element={ <Login />} path="/"/>
-        <Route element={ <Register />} path="/sign-up"/>
-        <Route element={<FreeComponent />} path="/free"/>
+        <Route element={ <Login checkForLogin={checkForLogin}/>} path="/login" exact/>
+        <Route element={ <Register checkForLogin={checkForLogin}/>} path="/sign-up"/>
+        <Route element={<Home />} path="/"/>
       </Routes>
       </>
   );

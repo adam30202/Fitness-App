@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-const Login = () => {
+const Login = ({ checkForLogin }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,7 +29,7 @@ const Login = () => {
         axios(configuration)
             .then((result) => {
                 setLogin(true);
-
+                checkForLogin(true); // passed login status back to app
                 cookies.set("TOKEN", result.data.token, {
                     path: "/",
                 })
