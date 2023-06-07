@@ -29,8 +29,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
-
 app.post("/post", (req, res) => {
     const post = new Post({
         image: req.body.image,
@@ -54,6 +52,18 @@ app.post("/post", (req, res) => {
             });
         });
 });
+
+app.get("/post", (req, res) => {
+    Post.find({}, (error, words) => {
+        if (error) res.status(400).send(error);
+        res.status(200).json(words);
+    })
+});
+
+
+
+
+////// User Routes/Controllers ////////
 
 
 app.post("/register", (req, res) => {
@@ -145,13 +155,13 @@ app.post("/login", (req, res) => {
 })
 
 // free endpoint
-app.get("/free-endpoint", (req, res) => {
-    res.json({ message: "You are free to access me anytime" });
-  });
+// app.get("/free-endpoint", (req, res) => {
+//     res.json({ message: "You are free to access me anytime" });
+//   });
   
-  // authentication endpoint
-app.get("/auth-endpoint", auth, (req, res) => {
-    res.json({ message: "You are authorized to access me" });
-});
+//   // authentication endpoint
+// app.get("/auth-endpoint", auth, (req, res) => {
+//     res.json({ message: "You are authorized to access me" });
+// });
 
 module.exports = app;

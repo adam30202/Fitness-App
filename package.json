@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "little-state-machine": "^4.8.0"
+  }
+}

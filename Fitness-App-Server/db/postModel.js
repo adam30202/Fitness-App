@@ -23,9 +23,13 @@ const PostSchema = new Schema({
         type: Number,
         default: 0,
     },
+    likes: {
+        type: [mongoose.ObjectId],
+    },
     author: {
         type: mongoose.ObjectId,
-        ref: 'User'
+        ref: 'User',
+        required: [true, "User must be assigned to post."]
     },
     createdAt: {
         type: Date,

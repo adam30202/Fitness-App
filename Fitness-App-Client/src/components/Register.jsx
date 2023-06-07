@@ -4,13 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-
-
-
 const Register = ({ checkForLogin }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [username, setUsername] = useState("");
+    const [location, setLocation] = useState("");
     const [register, setRegister] = useState(false);
 
     const navigate = useNavigate();
@@ -26,6 +25,8 @@ const Register = ({ checkForLogin }) => {
             data: {
                 email,
                 password,
+                location,
+                username
             }
         }
 
@@ -54,7 +55,19 @@ const Register = ({ checkForLogin }) => {
                     ) : (
                     <p className="text-danger">Please sign up</p>
                     )}
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group>
+
+                    <Form.Group>
+                        <Form.Label>Username</Form.Label>
+                        <Form.Control
+                            type="text"
+                            name="username"
+                            value={ username }
+                            onChange={(e) => setUsername(e.target.value)}
+                            placeholder="Enter username"
+                        />
+                    </Form.Group>
+
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
@@ -66,7 +79,7 @@ const Register = ({ checkForLogin }) => {
                 </Form.Group>
 
                 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
@@ -74,6 +87,17 @@ const Register = ({ checkForLogin }) => {
                         value={ password }
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
+                    />
+                </Form.Group>
+
+                <Form.Group>
+                    <Form.Label>Location</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="location"
+                        value={ location }
+                        onChange={(e) => setLocation(e.target.value)}
+                        placeholder="Your city"
                     />
                 </Form.Group>
 

@@ -1,14 +1,24 @@
 import { Container, Col, Row } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import { useState, useEffect, props } from 'react'
+import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Navbar = ({ isLoggedIn }) => {
+const Navbar = ({ isLoggedIn, checkForLogin }) => {
+
+    const navigate = useNavigate();
+    // logout
+    const logout = () => {
+    // destroys the cookie
+        cookies.remove("TOKEN", { path: "/" });
+        checkForLogin(false) // passed login status back to app
+        navigate("/")
+    }
 
     return (
         <nav>
-            <h1>GymPal</h1>     
+            <h1>Spotted</h1>     
             <ul className="nav">
                 <li>
                     <Link to="/">Home</Link>
@@ -17,10 +27,13 @@ const Navbar = ({ isLoggedIn }) => {
             { isLoggedIn ? (
             <ul>
                 <li>
-                    <Link to="/auth">Create Workout</Link>
+                    <Link to="/trending">Trending</Link>
                 </li>
                 <li>
-                    <Link to="/auth">Calorie Counter</Link>
+                    <Link to="/auth">Post Spotted</Link>
+                </li>
+                <li>
+                    <a href="" onClick={() => logout()}>Sign Out</a>
                 </li>
             </ul> 
             ) : (

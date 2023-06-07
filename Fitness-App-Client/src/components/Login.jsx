@@ -34,6 +34,14 @@ const Login = ({ checkForLogin }) => {
                     path: "/",
                 })
 
+                console.log(cookies.cookies["TOKEN"]);
+
+                const decoded = jwt.verify(cookies.cookies["TOKEN"], "RANDOM-TOKEN");  
+                const userId = decoded
+                console.log(userId)  
+
+
+
                 navigate("/auth");
             })
             .catch((error) => {
