@@ -7,6 +7,7 @@ const dbConnect = require("./db/dbConnect");
 const auth = require("./auth");
 
 const User = require("./db/userModel");
+const Post = require("./db/postModel");
 
 dbConnect();
 
@@ -28,6 +29,33 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+app.post("/post", (req, res) => {
+    const post = new Post({
+        image: req.body.image,
+        location: req.body.location,
+        category: req.body.category,
+        caption: req.body.caption,
+        author: req.body.author,
+    });
+    post
+        .save()
+        .then((result) => {
+            res.status(201).send({
+                message: "Post added successfully.",
+                result,
+            });
+        })
+        .catch((error) => {
+            res.status(500).send({
+                message: "Error saving post.",
+                error,
+            });
+        });
+});
+
+
 app.post("/register", (req, res) => {
     bcrypt
         .hash(req.body.password, 10)
@@ -35,6 +63,8 @@ app.post("/register", (req, res) => {
             const user = new User({
                 email: req.body.email,
                 password: hashedPassword,
+                location: req.body.location,
+                username: req.body.username,
             });
             user
                 .save()
