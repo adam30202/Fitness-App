@@ -24,9 +24,8 @@ const Navbar = () => {
                 <li>
                     <Link to="/">Home</Link>
                 </li>
-            </ul>
             { token ? (
-            <ul>
+            <>
                 <li>
                     <Link to="/trending">Trending</Link>
                 </li>
@@ -39,17 +38,18 @@ const Navbar = () => {
                 <li>
                     <a href="" onClick={() => logout()}>Sign Out</a>
                 </li>
-            </ul> 
+            </>
             ) : (
-            <ul>
+            <>
                 <li>
                     <Link to="/sign-up">Sign Up</Link>
                 </li>
                 <li>
                     <Link to="/login">Login</Link>
                 </li>
-            </ul>
+            </>
             )}
+            </ul>
         </nav>
     )
 }

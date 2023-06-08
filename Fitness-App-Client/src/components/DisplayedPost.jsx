@@ -3,7 +3,6 @@ const DisplayedPost = ({ post }) => {
     
     return (
         <div className="post-frame">
-            <p className="post-text">{ post.author }</p>
             <div className="image-container">
                 <img src={ post.image } className="post-image"/>
             </div>

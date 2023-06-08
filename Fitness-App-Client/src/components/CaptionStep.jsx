@@ -2,9 +2,11 @@ import React from "react";
 
 const CaptionStep = ({ formData, setFormData }) => {
 
-
 return (
     <div className='caption-container'>
+        <div className="image-form-container">
+            <img src={formData.image}/>
+        </div>
         <input 
             type="text"
             placeholder="write a caption"

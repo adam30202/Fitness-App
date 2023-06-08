@@ -5,6 +5,11 @@ const ImageStep = ({ formData, setFormData }) => {
 
 return (
     <div className='image-upload-container'>
+        { formData.image && 
+        <div className="image-form-container">
+            <img src={formData.image}/>
+        </div>
+        }
         <input 
             type="text"
             placeholder="image URL"
