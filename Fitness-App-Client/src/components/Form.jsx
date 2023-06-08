@@ -1,17 +1,62 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import ImageStep from "./ImageStep";
 import CaptionStep from "./CaptionStep";
 import CategoryStep from "./CategoryStep";
+import Cookies from "universal-cookie";
+import axios from "axios";
+
 
 
 const Form = () => {
 
+    /// decodes JWT to get userId for image upload
+    const cookies = new Cookies();
+    const token = cookies.get("TOKEN")
+    const payloadBase64Url = token.split('.')[1];
+    const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
+    const userId = decodedPayload.userId
+    const userLocation = decodedPayload.userLocation
+
     const [ page, setPage ] = useState(0);
     const [ formData, setFormData ] = useState({
-        image: "",
-        caption: "",
-        category: ""
+        image: '',
+        caption: '',
+        category: '',
+        location: userLocation,
+        author: userId,
     });
+
+    const navigate = useNavigate()
+
+    const _handleSubmit = (e) => {
+        e.preventDefault();
+
+        const configuration = {
+            method: 'post',
+            url: 'http://localhost:3000/new-post',
+            data: formData
+        }
+
+        axios(configuration)
+            .then((result) => {
+
+                console.log(result);
+
+                setFormData({
+                    image: '',
+                    caption: '',
+                    category: '',
+                    location: userLocation,
+                    author: userId,
+                });
+
+                navigate('/myfeed');
+            })
+            .catch((error) => {
+                console.error(`An error occured: ${error}`)
+            });
+    }
 
 
     const FormTitles = ["Image Upload", "Caption", "Category"];
@@ -49,9 +94,9 @@ return (
                     Prev
                 </button>
                 <button
-                    onClick={() => {
+                    onClick={(e) => {
                         if (page === FormTitles.length - 1) {
-                            console.log(formData) // send here to api
+                            _handleSubmit(e)
                         } else {
                             setPage((page) => page + 1 )
                         }

@@ -144,3 +144,31 @@ input {
 input:focus {
   border: 3px solid rgb(98, 0, 255);
 }
+
+/* Displayed Posts CSS */
+
+#root {
+  /* width: 70%; */
+}
+
+
+.post-frame {
+  border: 3px solid black;
+  width: 58%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.post-image {
+  align-self: center;
+  height: auto;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.post-text p {
+  align-items: right;
+}
+

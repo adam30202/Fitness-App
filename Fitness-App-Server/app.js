@@ -29,12 +29,12 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.post("/post", (req, res) => {
+app.post("/new-post", (req, res) => {
     const post = new Post({
         image: req.body.image,
-        location: req.body.location,
         category: req.body.category,
         caption: req.body.caption,
+        location: req.body.location,
         author: req.body.author,
     });
     post
@@ -127,6 +127,8 @@ app.post("/login", (req, res) => {
                     {
                         userId: user._id,
                         userEmail: user.email,
+                        userLocation: user.location,
+                        userUsername: user.username
                     },
                     "RANDOM-TOKEN",
                     { expiresIn: "24hr" }

@@ -37,12 +37,12 @@ const Register = ({ checkForLogin }) => {
                 cookies.set("TOKEN", result.data.token, {
                     path: "/",
                 })
-                navigate("/auth");
+                navigate("/myposts");
 
 
               })
               .catch((error) => {
-                error = new Error();
+                console.error(`An error occured: ${error}`)
               });
     }
 

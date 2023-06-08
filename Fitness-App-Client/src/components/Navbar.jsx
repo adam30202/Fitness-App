@@ -30,7 +30,10 @@ const Navbar = ({ isLoggedIn, checkForLogin }) => {
                     <Link to="/trending">Trending</Link>
                 </li>
                 <li>
-                    <Link to="/auth">Post Spotted</Link>
+                    <Link to="/post-spotted">Post Spotted</Link>
+                </li>
+                <li>
+                    <Link to="/myposts">My Posts</Link>
                 </li>
                 <li>
                     <a href="" onClick={() => logout()}>Sign Out</a>

@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import Cookies from "universal-cookie";
-import Form from './Form';
-const cookies = new Cookies();
+import Form from '../components/Form';
+
 
 const NewPost = () => {
 
