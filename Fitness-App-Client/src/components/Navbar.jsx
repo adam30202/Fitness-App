@@ -5,14 +5,15 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Navbar = ({ isLoggedIn, checkForLogin }) => {
+const Navbar = () => {
 
     const navigate = useNavigate();
+
+    const token = cookies.get("TOKEN");
     // logout
     const logout = () => {
     // destroys the cookie
         cookies.remove("TOKEN", { path: "/" });
-        checkForLogin(false) // passed login status back to app
         navigate("/")
     }
 
@@ -24,7 +25,7 @@ const Navbar = ({ isLoggedIn, checkForLogin }) => {
                     <Link to="/">Home</Link>
                 </li>
             </ul>
-            { isLoggedIn ? (
+            { token ? (
             <ul>
                 <li>
                     <Link to="/trending">Trending</Link>

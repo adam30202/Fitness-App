@@ -29,6 +29,10 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+/////// Post Routes/Controllers /////////////
+
+///// Adds post
 app.post("/new-post", (req, res) => {
     const post = new Post({
         image: req.body.image,
@@ -53,10 +57,20 @@ app.post("/new-post", (req, res) => {
         });
 });
 
+
+///// Gets all posts
 app.get("/post", (req, res) => {
-    Post.find({}, (error, words) => {
+    Post.find({}, (error, posts) => {
         if (error) res.status(400).send(error);
-        res.status(200).json(words);
+        res.status(200).json(posts);
+    })
+});
+
+///// Gets all of the user's posts
+app.get("/myposts", (req, res) => {
+    Post.find({author: req.query.author}, (error, posts) => {
+        if (error) res.status(400).send(error);
+        res.status(200).json(posts);
     })
 });
 

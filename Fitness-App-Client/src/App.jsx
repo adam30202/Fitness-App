@@ -7,27 +7,19 @@ import MyPosts from './views/MyPosts';
 import Navbar from './components/Navbar';
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
-import { useState } from 'react'
 
 function App() {
 
-  const [ isLoggedIn, setIsloggedIn ] = useState(false);
-
-  const checkForLogin = (result) => {
-    setIsloggedIn(result)
-  }
-  
-
   return (
     <>
-      <Navbar isLoggedIn={isLoggedIn} checkForLogin={checkForLogin}/>
+      <Navbar/>
       <Routes>
         <Route element={<ProtectedRoutes />}>
           <Route element={<NewPost/>} path="/post-spotted"/>
           <Route element={<MyPosts/>} path="/myposts"/>
         </Route>
-        <Route element={ <Login checkForLogin={checkForLogin}/>} path="/login" exact/>
-        <Route element={ <Register checkForLogin={checkForLogin}/>} path="/sign-up"/>
+        <Route element={<Login />} path="/login" exact/>
+        <Route element={<Register />} path="/sign-up"/>
         <Route element={<Home />} path="/"/>
       </Routes>
       </>

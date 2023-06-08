@@ -51,7 +51,7 @@ const Form = () => {
                     author: userId,
                 });
 
-                navigate('/myfeed');
+                navigate('/myposts');
             })
             .catch((error) => {
                 console.error(`An error occured: ${error}`)
