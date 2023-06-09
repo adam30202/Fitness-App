@@ -1,16 +1,20 @@
 
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const DisplayedPost = ({ post }) => {
 
-    // const _handleEdit = ({ key }) => {
-    //     axios
-    //         .put("http://localhost:3000/myposts", {
-    //             params: { id: key }
-    //         })
-    //         .
-    // }
-    
+    const _handleDelete = () => {
+
+        axios.delete('http://localhost:3000/myposts' + post._id )
+            .then((result) => {
+                console.log("Post: " + post._id + " deleted")
+            })
+            .catch((error) => {
+                console.error(error)
+            })
+    }
+
     return (
         <div className="post-frame">
             <div className="image-container">
@@ -19,7 +23,8 @@ const DisplayedPost = ({ post }) => {
             <p className="post-text">Category: { post.category }</p>
             <p className="post-text">{ post.likeCount } Likes</p>
             <p className="post-text">Caption: { post.caption }</p>
-            <Link to={{pathname: "/edit-spotted", query: { id: post._id }}}>Edit Spotted</Link>
+            <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit Spotted</Link>
+            <Link onClick={ _handleDelete }>Delete Spotted</Link>
         </div>
     );
 }

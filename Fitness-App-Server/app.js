@@ -74,12 +74,37 @@ app.get("/myposts", (req, res) => {
     })
 });
 
-///// Edit a post
-app.put("/myposts", (req, res) => {
-    Post.findOneAndUpdate({_id: key }, (error, posts) => {
+///// Gets post to edit
+app.get("/edit-spotted", (req, res) => {
+    Post.find({_id: req.query.id}, (error, post) => {
         if (error) res.status(400).send(error);
-        res.status(200).json(posts);
+        res.status(200).json(post);
     })
+});
+
+///// Edits post
+app.put("/edit-spotted", (req, res) => {
+    Post.findOneAndUpdate(
+        {_id: req.query.id},
+        req.body,
+        { new: true },
+        (error, post) => {
+            if (error) res.status(400).send(error);
+            res.status(200).json(post);
+            console.log(req.query.id)
+        });
+});
+
+///// Deletes post
+app.delete("/myposts:id", (req, res) => {
+    Post.deleteOne({_id: req.params.id }, (error) => {
+            if (error) res.status(400).send(error);
+
+            res.status(200).json({
+                message: req.query.id,
+                _id: req.params.wordId
+            });
+        })
 });
 
 

@@ -1,14 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import ImageStep from "./ImageStep";
 import CaptionStep from "./CaptionStep";
 import CategoryStep from "./CategoryStep";
 import Cookies from "universal-cookie";
-import axios from "axios";
 
-
-
-const Form = () => {
+const Form = ({ post, submitPost }) => {
 
     /// decodes JWT to get userId for image upload
     const cookies = new Cookies();
@@ -27,37 +24,23 @@ const Form = () => {
         author: userId,
     });
 
-    const navigate = useNavigate();
+    useEffect(() => {
+        if (post) {
+        setFormData({
+            image: post.image,
+            caption: post.caption,
+            category: post.category,
+            location: userLocation,
+            author: userId
+        })
+        }
+    }, [post]);
 
     const _handleSubmit = (e) => {
         e.preventDefault();
 
-        const configuration = {
-            method: 'post',
-            url: 'http://localhost:3000/new-post',
-            data: formData
-        }
-
-        axios(configuration)
-            .then((result) => {
-
-                console.log(result);
-
-                setFormData({
-                    image: '',
-                    caption: '',
-                    category: '',
-                    location: userLocation,
-                    author: userId,
-                });
-
-                navigate('/myposts');
-            })
-            .catch((error) => {
-                console.error(`An error occured: ${error}`)
-            });
+        submitPost(formData)
     }
-
 
     const FormTitles = ["Image Upload", "Caption", "Category"];
 
