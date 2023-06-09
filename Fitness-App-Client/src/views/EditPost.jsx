@@ -11,6 +11,7 @@ const EditPost = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    //// Retrieves info of post to be edited
     useEffect(() => {
         //// retrieves post ID from query and cuts off '?' at the beginning
         const postId = location.search.split('').splice(1).join('');
@@ -26,6 +27,7 @@ const EditPost = () => {
             });
     }, []);
 
+    //// Submits edited post
     const submitEditPost = (formData) => {
         console.log(formData)
         const configuration = {

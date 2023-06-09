@@ -13,6 +13,7 @@ const MyPosts = () => {
     const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
     const userId = decodedPayload.userId
 
+    ///// Gets all of the user's posts
     useEffect(() => {
         axios
             .get("http://localhost:3000/myposts", {
@@ -28,9 +29,22 @@ const MyPosts = () => {
             });
     }, []);
 
+    ///// Deletes a post
+    const deletePost = (postId) => {
+        axios.delete('http://localhost:3000/myposts' + postId )
+        .then((result) => {
+            console.log("Post: " + postId + " deleted")
+            ///// Changes state to reflect change in database
+            setPosts(posts.filter(post => post._id !== postId))
+        })
+        .catch((error) => {
+            console.error(error)
+        })
+    }
+
     return (
         <div className="container">
-            { posts && (posts.map((post) => <DisplayedPost post={ post } key={ post._id }/> ))}
+            { posts && (posts.map((post) => <DisplayedPost post={ post } deletePost={ deletePost }key={ post._id }/> ))}
         </div>
     );
 }

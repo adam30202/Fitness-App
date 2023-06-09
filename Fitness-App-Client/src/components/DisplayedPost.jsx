@@ -2,17 +2,11 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const DisplayedPost = ({ post }) => {
+
+const DisplayedPost = ({ post, deletePost }) => {
 
     const _handleDelete = () => {
-
-        axios.delete('http://localhost:3000/myposts' + post._id )
-            .then((result) => {
-                console.log("Post: " + post._id + " deleted")
-            })
-            .catch((error) => {
-                console.error(error)
-            })
+        deletePost(post._id)
     }
 
     return (
