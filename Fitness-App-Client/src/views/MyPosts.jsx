@@ -26,7 +26,7 @@ const MyPosts = () => {
             .catch((error) => {
                 console.error(error);
             });
-    }, []);  
+    }, []);
 
     return (
         <div className="container">

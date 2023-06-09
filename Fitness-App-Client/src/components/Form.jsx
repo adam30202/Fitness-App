@@ -27,7 +27,7 @@ const Form = () => {
         author: userId,
     });
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const _handleSubmit = (e) => {
         e.preventDefault();

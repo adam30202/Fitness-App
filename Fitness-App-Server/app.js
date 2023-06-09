@@ -74,6 +74,14 @@ app.get("/myposts", (req, res) => {
     })
 });
 
+///// Edit a post
+app.put("/myposts", (req, res) => {
+    Post.findOneAndUpdate({_id: key }, (error, posts) => {
+        if (error) res.status(400).send(error);
+        res.status(200).json(posts);
+    })
+});
+
 
 
 

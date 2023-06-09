@@ -3,6 +3,7 @@ import Register from "./components/Register";
 import Login from './components/Login';
 import Home from "./views/Home";
 import NewPost from "./views/NewPost";
+import EditPost from './views/EditPost';
 import MyPosts from './views/MyPosts';
 import Navbar from './components/Navbar';
 import ProtectedRoutes from "./utils/ProtectedRoutes";
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route element={<ProtectedRoutes />}>
           <Route element={<NewPost/>} path="/post-spotted"/>
+          <Route element={<EditPost/>} path="/edit-spotted"/>
           <Route element={<MyPosts/>} path="/myposts"/>
         </Route>
         <Route element={<Login />} path="/login" exact/>
