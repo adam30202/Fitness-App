@@ -1,4 +1,5 @@
 import React from "react";
+import UploadWidget from "./UploadWidget";
 
 const ImageStep = ({ formData, setFormData }) => {
 
@@ -9,6 +10,7 @@ return (
             <img src={formData.image}/>
         </div>
         }
+        <UploadWidget />
         <input 
             type="text"
             placeholder="image URL"

@@ -8,8 +8,21 @@ import MyPosts from './views/MyPosts';
 import Navbar from './components/Navbar';
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
+import { useEffect } from 'react';
 
 function App() {
+
+useEffect(() => {
+    const head = document.querySelector("head");
+    const script = document.createElement("script");
+    script.setAttribute("src", "https://upload-widget.cloudinary.com/global/all.js");
+    head.appendChild(script);
+
+    // return () => {
+    //   head.removeChild(script);
+    // };
+}, []);
+
 
   return (
     <>
