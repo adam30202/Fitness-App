@@ -1,18 +1,25 @@
+ #root {
+  background-color: rgb(193, 202, 255);
+  width: 100%; 
+  /* height: 100vh;  */
+  /* display: grid;  */
+  justify-content: center;  
+} 
+
 body {
-  background: rgb(255, 100, 228);
-  background: radial-gradient(
-    rgb(216, 8, 175) 0%,
-    rgb(222, 211, 209) 84%,
-    rgb(215, 161, 181) 100%
-  ); 
-  background-color: rgb(18, 188, 131);
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 /* Nav bar */
+
+nav {
+  background-color: rgb(70, 70, 242);
+  width: 100%;
+  color: white;
+  margin-bottom: 2em;
+}
+
 nav ul {
   display: flex;
   justify-content: center;
@@ -22,6 +29,11 @@ nav ul li a {
   display: inline-block;
   padding: 10px;
   text-decoration: none;
+  color: white;
+}
+
+nav h1 {
+  margin-left: 2em;
 }
 /* Nav bar */
 
@@ -170,10 +182,6 @@ input:focus {
 
 /* Displayed Posts CSS */
 
-#root {
-  /* width: 70%; */
-}
-
 .container {
   min-width: 960px;
 }
@@ -182,7 +190,7 @@ input:focus {
   background-color: aliceblue;
   /* border: 2px solid black; */
   border-radius: 1em;
-  width: 48%;
+  width: 35%;
   height: 500px;
   margin: 0 auto;
   margin-bottom: 1.5em;
