@@ -1,8 +1,8 @@
-import { useEffect, useRef } from "react";
-import { Helmet } from "react-helmet";
+import { useEffect, useRef, useState } from "react";
 
-const UploadWidget = () => {
+const UploadWidget = ({ widgetURLSetter }) => {
 
+///Cloudinary image uploader widget ->
     const cloudinaryRef = useRef();
     const widgetRef = useRef();
     useEffect(() => {
@@ -11,14 +11,15 @@ const UploadWidget = () => {
             cloudName: 'dnwt2kr32',
             uploadPreset: 'dgkxujdz'
         }, function(error, result) {
-            console.log(result)
+            if (!error && result.event === 'success') {
+                widgetURLSetter(result.info.secure_url)
+            } 
         })
-        console.log(cloudinaryRef.current)
     }, [])
 
     return (
         <button onClick={() => widgetRef.current.open() }>
-            Upload
+            Upload Image
         </button>
     )
 }

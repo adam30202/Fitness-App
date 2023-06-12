@@ -1,7 +1,5 @@
-
 import { Link } from "react-router-dom";
-import axios from "axios";
-
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const DisplayedPost = ({ post, deletePost }) => {
 
@@ -17,8 +15,10 @@ const DisplayedPost = ({ post, deletePost }) => {
             <p className="post-text">Category: { post.category }</p>
             <p className="post-text">{ post.likeCount } Likes</p>
             <p className="post-text">Caption: { post.caption }</p>
+                
             <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit Spotted</Link>
             <Link onClick={ _handleDelete }>Delete Spotted</Link>
+            
         </div>
     );
 }
