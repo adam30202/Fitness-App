@@ -18,7 +18,7 @@ const UploadWidget = ({ widgetURLSetter }) => {
     }, [])
 
     return (
-        <button onClick={() => widgetRef.current.open() }>
+        <button className="upload-image-button" onClick={() => widgetRef.current.open() }>
             Upload Image
         </button>
     )

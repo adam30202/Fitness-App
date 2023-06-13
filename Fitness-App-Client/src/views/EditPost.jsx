@@ -49,7 +49,7 @@ const EditPost = () => {
 
     return (
     <div>
-        <h1>Edit Post</h1>
+        <h1 className="view-title">Edit Post</h1>
         <Form post={ post } submitPost={ submitEditPost }/>
     </div>
     );

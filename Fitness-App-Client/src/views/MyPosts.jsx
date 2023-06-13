@@ -44,6 +44,7 @@ const MyPosts = () => {
 
     return (
         <div className="container">
+            <h1 className="view-title">My Posts</h1>
             { posts && (posts.map((post) => <DisplayedPost post={ post } deletePost={ deletePost }key={ post._id }/> ))}
         </div>
     );

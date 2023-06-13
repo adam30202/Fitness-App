@@ -1,14 +1,20 @@
- #root {
+#root {
   background-color: rgb(193, 202, 255);
   width: 100%; 
-  /* height: 100vh;  */
+  /* height: 100; */
   /* display: grid;  */
   justify-content: center;  
 } 
 
 body {
+  background-color: rgb(193, 202, 255);
   margin: 0;
   padding: 0;
+}
+
+.view-title {
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 /* Nav bar */
@@ -50,9 +56,9 @@ nav h1 {
 .form-container {
   width: 400px;
   height: 400px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.905);
   border-radius: 8px;
-  box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0 15px 1px rgba(24, 13, 225, 0.4);
   display: flex;
   flex-direction: column;
 }
@@ -77,7 +83,7 @@ nav h1 {
   border-radius: 7px;
   width: 100px;
   height: 40px;
-  background-color: rgb(255, 0, 140);
+  background-color: rgb(70, 70, 242);
   font-weight: bold;
   color: white;
   border: 0 none;
@@ -106,6 +112,22 @@ nav h1 {
   font-size: 20px;
 }
 
+.upload-image-button {
+  border-radius: 7px;
+  width: 150px;
+  height: 40px;
+  background-color: rgba(32, 32, 114, 0.401);
+  font-weight: bold;
+  color: white;
+  border: 0 none;
+  border-radius: 1px;
+  cursor: pointer;
+  padding: 10px 5px;
+  margin: 10px 5px;
+  margin: 5px;
+  border-radius: 8px;
+}
+
 .caption-container {
   height: 100%;
   width: 100%;
@@ -126,18 +148,18 @@ nav h1 {
 /* PROGRESS BAR */
 .progressbar {
   width: 400px;
-  height: 10px;
+  height: 15px;
   background-color: white;
   margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .progressbar div {
   width: 33.3%;
   height: 100%;
-  border: solid 2px rgba(12, 67, 185, 0.701);
+  /* border: solid 2px rgba(12, 67, 185, 0.701); */
   background-color: rgb(98, 0, 255);
-  border-radius: 10px;
+  border-radius: 7px;
 }
 
 .category-container {
@@ -168,14 +190,17 @@ input:focus {
 
 .image-form-container {
   width: 100%;
+  /* min-height: 50%; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  position: relative;
+  /* display: inline-block; */
+  /* align-items: center; */
 }
 
 .image-form-container img {
-  width: 90%;
-  height: auto;
+  height: 200px;
+  max-width: 80%;
 }
 /* Form */
 
@@ -220,6 +245,14 @@ input:focus {
   width: 81%;
   height: 100%; 
   object-fit: contain;
+}
+
+/* like heart button */
+.like-heart {
+  background-color: red;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 

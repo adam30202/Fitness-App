@@ -7,22 +7,16 @@ const ImageStep = ({ formData, setFormData }) => {
         setFormData({...formData, image: url }) 
     }
 
-return (
-    <div className='image-upload-container'>
-        { formData.image && 
-        <div className="image-form-container">
-            <img src={formData.image}/>
+    return (
+        <div className='image-upload-container'>
+            { formData.image && 
+            <div className="image-form-container">
+                <img src={formData.image}/>
+            </div>
+            }
+            <UploadWidget widgetURLSetter={ widgetURLSetter }/>
         </div>
-        }
-        <UploadWidget widgetURLSetter={ widgetURLSetter }/>
-        {/* <input 
-            type="text"
-            placeholder="image URL"
-            value={ formData.image || '' }
-            onChange={(e) => setFormData({...formData, image: e.target.value }) }
-            /> */}
-    </div>
-)
+    )
 
 }
 
