@@ -14,6 +14,7 @@ const Form = ({ post, submitPost }) => {
     const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
     const userId = decodedPayload.userId
     const userLocation = decodedPayload.userLocation
+    console.log(userId, userLocation)
 
     const [ page, setPage ] = useState(0);
     const [ formData, setFormData ] = useState({

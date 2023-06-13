@@ -15,34 +15,25 @@ export const UserContext = createContext();
 
 function App() {
 
-  const [ user, setUser ] = useState('')
+  const [ user, setUser ] = useState('');
+  const [ isLoggedIn, setIsLoggedIn ] = useState(false);
 
   const cookies = new Cookies();
-  
 
   useEffect(() => {
-    // const head = document.querySelector("head");
-    // const script = document.createElement("script");
-    // script.setAttribute("src", "https://upload-widget.cloudinary.com/global/all.js");
-    // head.appendChild(script);
-
     const token = cookies.get("TOKEN")
     if (token) {
       const payloadBase64Url = token.split('.')[1];
       const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
       const userId = decodedPayload.userId;
       setUser(userId)
-      console.log(token)
-      console.log(cookies)
     }
-    console.log('outside condtion', user)
-
-  }, [cookies.token]);
+  }, [isLoggedIn]);
 
 
   return (
     <>
-      <Navbar/>
+      <Navbar setIsLoggedIn={ setIsLoggedIn }/>
       <UserContext.Provider value={user}>
         <Routes>
           <Route element={<ProtectedRoutes />}>
@@ -50,8 +41,8 @@ function App() {
             <Route element={<EditPost/>} path="/edit-spotted"/>
             <Route element={<MyPosts/>} path="/myposts"/>
           </Route>
-          <Route element={<Login />} path="/login" exact/>
-          <Route element={<Register />} path="/sign-up"/>
+          <Route element={<Login setIsLoggedIn={ setIsLoggedIn }/>} path="/login" exact/>
+          <Route element={<Register setIsLoggedIn={ setIsLoggedIn }/>} path="/sign-up"/>
           <Route element={<Home />} path="/"/>
         </Routes>
       </UserContext.Provider>

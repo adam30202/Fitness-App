@@ -5,7 +5,7 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Cookies from "universal-cookie";
 const cookies = new Cookies();
 
-const Navbar = () => {
+const Navbar = ({ setIsLoggedIn }) => {
 
     const navigate = useNavigate();
 
@@ -14,7 +14,9 @@ const Navbar = () => {
     const logout = () => {
     // destroys the cookie
         cookies.remove("TOKEN", { path: "/" });
-        navigate("/")
+
+        setIsLoggedIn(false);
+        navigate("/");
     }
 
     return (

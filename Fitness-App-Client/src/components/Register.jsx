@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Cookies from "universal-cookie";
 
-const Register = () => {
+const Register = ({ setIsLoggedIn }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,10 +35,9 @@ const Register = () => {
                 setRegister(true);
                 cookies.set("TOKEN", result.data.token, {
                     path: "/",
-                })
+                });
+                setIsLoggedIn(true);
                 navigate("/myposts");
-
-
               })
               .catch((error) => {
                 console.error(`An error occured: ${error}`)
