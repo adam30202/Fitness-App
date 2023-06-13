@@ -8,6 +8,7 @@ const auth = require("./auth");
 
 const User = require("./db/userModel");
 const Post = require("./db/postModel");
+const postModel = require('./db/postModel');
 
 dbConnect();
 
@@ -29,6 +30,41 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
+///// Like Route/Controller /////////////
+app.put(("/like"), (req, res) => {
+    const postId = req.body.id
+    const userId = req.body.userId
+    
+    Post.findById(postId)
+        .exec()
+        .then(post => {
+    
+        if (post.likes.includes(userId)) {
+            Post.findOneAndUpdate(
+                {_id: postId},
+                { $pull: {likes: userId}, $inc: {likeCount: -1} }, /// decreases likeCount, remvoes userId from likes array
+                { new: true },
+                (error, post) => {
+                    if (error) res.status(400).send(error);
+                    res.status(200).json(post);
+                });
+        } else {
+            Post.findOneAndUpdate(
+                {_id: postId},
+                { $push: {likes: userId}, $inc: {likeCount: 1}}, /// Increases likeCount, adds userId to likes array
+                { new: true },
+                (error, post) => {
+                    if (error) res.status(400).send(error);
+                    res.status(200).json(post);
+                });
+        }
+        
+    })
+    .catch(error => {
+        res.status(400).send(error);
+      });
+});
 
 /////// Post Routes/Controllers /////////////
 
@@ -79,7 +115,7 @@ app.get("/edit-spotted", (req, res) => {
     Post.find({_id: req.query.id}, (error, post) => {
         if (error) res.status(400).send(error);
         res.status(200).json(post);
-    })
+    });
 });
 
 ///// Edits post
@@ -130,8 +166,10 @@ app.post("/register", (req, res) => {
                     // Creates JWT Token to auto sign in new user
                     const token = jwt.sign(
                         {
-                            userId: this._id,
-                            userEmail: this.email,
+                            userId: user._id,
+                            userEmail: user.email,
+                            userLocation: user.location,
+                            userUsername: user.username
                         },
                         "RANDOM-TOKEN",
                         { expiresIn: "24hr" }
