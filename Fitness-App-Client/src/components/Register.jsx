@@ -1,6 +1,7 @@
 import { Form, Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import GeoLocation from './GeoLocation';
 import axios from "axios";
 import Cookies from "universal-cookie";
 
@@ -15,8 +16,9 @@ const Register = ({ setIsLoggedIn }) => {
     const navigate = useNavigate();
 
     const cookies = new Cookies();
-
+    
     const _handleSubmit = (e) => {
+        console.log(location)
         e.preventDefault();
 
         const configuration = {
@@ -45,27 +47,30 @@ const Register = ({ setIsLoggedIn }) => {
     }
 
     return (
-        <>
-            <h2>Register</h2>
-            <Form onSubmit={(e)=> _handleSubmit(e)}>
+        <div className="flex justify-center h-screen">
+            <GeoLocation setLocation={ setLocation }/>
+
+            <Form onSubmit={(e)=> _handleSubmit(e)} className="w-96">
+                <h2 className="text-4xl font-bold justify-center flex">Register</h2>
                 {register ? (
                     <p className="text-success">You have signed up successfully</p>
                     ) : (
                     <p className="text-danger">Please sign up</p>
                     )}
-                <Form.Group>
+                    
 
-                    <Form.Group>
-                        <Form.Label>Username</Form.Label>
-                        <Form.Control
-                            type="text"
-                            name="username"
-                            value={ username }
-                            onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Enter username"
-                        />
-                    </Form.Group>
+                <Form.Group className="mb-2">
+                    <Form.Label>Username</Form.Label>
+                    <Form.Control
+                        type="text"
+                        name="username"
+                        value={ username }
+                        onChange={(e) => setUsername(e.target.value)}
+                        placeholder="Enter username"
+                    />
+                </Form.Group>
 
+                <Form.Group className="mb-2">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
@@ -77,7 +82,7 @@ const Register = ({ setIsLoggedIn }) => {
                 </Form.Group>
 
                 
-                <Form.Group>
+                <Form.Group className="mb-2">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
@@ -88,7 +93,7 @@ const Register = ({ setIsLoggedIn }) => {
                     />
                 </Form.Group>
 
-                <Form.Group>
+                {/* <Form.Group className="mb-3">
                     <Form.Label>Location</Form.Label>
                     <Form.Control
                         type="text"
@@ -97,7 +102,7 @@ const Register = ({ setIsLoggedIn }) => {
                         onChange={(e) => setLocation(e.target.value)}
                         placeholder="Your city"
                     />
-                </Form.Group>
+                </Form.Group> */}
 
                 
                 <Button
@@ -108,7 +113,7 @@ const Register = ({ setIsLoggedIn }) => {
                     Submit
                 </Button>
             </Form>
-        </>
+        </div>
     )
 }
 

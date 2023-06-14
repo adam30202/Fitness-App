@@ -8,7 +8,7 @@ const Login = ({ setIsLoggedIn }) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [login, setLogin] = useState(false);
+    const [login, setLogin] = useState(true);
 
     const navigate = useNavigate();
 
@@ -36,21 +36,21 @@ const Login = ({ setIsLoggedIn }) => {
                 navigate("/myposts");
             })
             .catch((error) => {
-                console.error(`An error occured: ${error}`)
+                setLogin(false);
+                console.error(`An error occured: ${error}`);
             });
       }
 
 
     return (
-        <>
-            <h2>Login</h2>
-            <Form onSubmit={(e)=> _handleSubmit(e)}>
-                {login ? (
-                    <p className="text-success">You have logged in successfully</p>
-                    ) : (
-                    <p className="text-danger">Failed to log in</p>
+        <div className="flex justify-center h-screen">
+            
+            <Form onSubmit={(e)=> _handleSubmit(e)} className="w-96">
+                <h2 className="text-4xl font-bold justify-center flex">Login</h2>
+                {login === false && (
+                    <p className="text-danger justify-center flex">Incorrect password or email</p>
                     )}
-                <Form.Group controlId="formBasicEmail">
+                <Form.Group controlId="formBasicEmail" className="mb-2">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
@@ -61,7 +61,7 @@ const Login = ({ setIsLoggedIn }) => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword">
+                <Form.Group controlId="formBasicPassword" className="mb-3">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
@@ -72,7 +72,7 @@ const Login = ({ setIsLoggedIn }) => {
                     />
                 </Form.Group>
 
-                <Button
+                <Button className="flex justify-center"
                 variant="primary"
                 type="submit"
                 onClick={(e) => _handleSubmit(e)}
@@ -80,7 +80,7 @@ const Login = ({ setIsLoggedIn }) => {
                 Login
                 </Button>
             </Form>
-        </>
+        </div>
     )
 }
 

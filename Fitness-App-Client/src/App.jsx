@@ -9,7 +9,7 @@ import MyPosts from './views/MyPosts';
 import Navbar from './components/Navbar';
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
-import { useEffect, useContext, createContext, useState } from 'react';
+import { useEffect, createContext, useState } from 'react';
 import Cookies from "universal-cookie";
 
 export const UserContext = createContext();
@@ -33,7 +33,7 @@ function App() {
 
 
   return (
-    <>
+    <> 
       <Navbar setIsLoggedIn={ setIsLoggedIn }/>
       <UserContext.Provider value={user}>
         <Routes>
