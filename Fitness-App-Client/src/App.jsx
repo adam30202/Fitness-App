@@ -2,6 +2,7 @@ import './App.css';
 import Register from "./components/Register";
 import Login from './components/Login';
 import Home from "./views/Home";
+import AllPosts from './views/AllPosts';
 import NewPost from "./views/NewPost";
 import EditPost from './views/EditPost';
 import MyPosts from './views/MyPosts';
@@ -37,6 +38,7 @@ function App() {
       <UserContext.Provider value={user}>
         <Routes>
           <Route element={<ProtectedRoutes />}>
+            <Route element={<AllPosts/>} path="/allposts"/>
             <Route element={<NewPost/>} path="/post-spotted"/>
             <Route element={<EditPost/>} path="/edit-spotted"/>
             <Route element={<MyPosts/>} path="/myposts"/>

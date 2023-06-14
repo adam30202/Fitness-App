@@ -95,7 +95,7 @@ app.post("/new-post", (req, res) => {
 
 
 ///// Gets all posts
-app.get("/post", (req, res) => {
+app.get("/allposts", (req, res) => {
     Post.find({}, (error, posts) => {
         if (error) res.status(400).send(error);
         res.status(200).json(posts);

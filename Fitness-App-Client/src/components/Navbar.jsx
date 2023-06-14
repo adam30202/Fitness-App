@@ -29,6 +29,9 @@ const Navbar = ({ setIsLoggedIn }) => {
             { token ? (
             <>
                 <li>
+                    <Link to="/allposts">All Posts</Link>
+                </li>
+                <li>
                     <Link to="/trending">Trending</Link>
                 </li>
                 <li>

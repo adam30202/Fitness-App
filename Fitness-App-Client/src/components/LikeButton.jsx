@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Link } from 'react-router-dom';
 import { useState, useContext } from "react";
 import { UserContext } from "../App";
 
@@ -32,7 +33,7 @@ const LikeButton = ({ postId, setLikes, heart, setHeart }) => {
 
     return (
         <div>
-            <p className="like-heart" onClick={ _handleLike }> {  heart  } </p>
+            <Link className="like-heart" onClick={ _handleLike }> {  heart  } </Link>
         </div>
     )
 }

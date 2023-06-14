@@ -31,8 +31,13 @@ const DisplayedPost = ({ post, deletePost }) => {
             <p className="post-text">{ likes } Likes</p>
             <p className="post-text">{ post.caption }</p>
             <p className="post-text">Category: { post.category }</p>
+            
+            { post.author === user &&
+            <div>
             <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit Spotted</Link>
             <Link onClick={ _handleDelete }>Delete Spotted</Link>
+            </div>
+            }
 
         </div>
     );
