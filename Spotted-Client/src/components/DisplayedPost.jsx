@@ -41,7 +41,13 @@ const DisplayedPost = ({ post, deletePost }) => {
             { post.author === user &&
                 <div className="links-container">
                     <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit</Link>
-                    <Link onClick={ _handleDelete }>Delete</Link>
+                    <Link 
+                    onClick={() => { if (window.confirm('Are you sure you wish to delete this item?') ) return _handleDelete() }}
+                    
+                   >
+                        
+                        
+                        Delete</Link>
                 </div>
             }
 

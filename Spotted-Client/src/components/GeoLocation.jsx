@@ -25,7 +25,6 @@ const GeoLocation = ({ setLocation }) => {
             })
             .then((response) => {
                 setLocation(response.data[0].City)
-                console.log(response.data[0])
             })
             .catch((error) => {
                 console.error(error)
