@@ -43,7 +43,7 @@ app.put(("/like"), (req, res) => {
         if (post.likes.includes(userId)) {
             Post.findOneAndUpdate(
                 {_id: postId},
-                { $pull: {likes: userId}, $inc: {likeCount: -1} }, /// decreases likeCount, remvoes userId from likes array
+                { $pull: {likes: userId}, $inc: {likeCount: -1} }, /// decreases likeCount, removes userId from likes array
                 { new: true },
                 (error, post) => {
                     if (error) res.status(400).send(error);
@@ -103,7 +103,7 @@ app.get("/allposts", (req, res) => {
     })
 });
 
-///// Gets all of the user's posts
+///// Gets all of a user's posts
 app.get("/myposts", (req, res) => {
     Post.find({author: req.query.author}, (error, posts) => {
         if (error) res.status(400).send(error);
@@ -151,9 +151,6 @@ app.delete("/myposts:id", (req, res) => {
             });
         })
 });
-
-
-
 
 ////// User Routes/Controllers ////////
 
@@ -248,16 +245,6 @@ app.post("/login", (req, res) => {
                 e,
             });
         });
-})
-
-// free endpoint
-// app.get("/free-endpoint", (req, res) => {
-//     res.json({ message: "You are free to access me anytime" });
-//   });
-  
-//   // authentication endpoint
-// app.get("/auth-endpoint", auth, (req, res) => {
-//     res.json({ message: "You are authorized to access me" });
-// });
+});
 
 module.exports = app;
