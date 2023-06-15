@@ -15,14 +15,6 @@ return (
             value={ formData.caption }
             onChange={(e) => setFormData({...formData, caption: e.target.value }) }
             />
-        
-        {/* <input 
-            type="text"
-            placeholder="Write a caption"
-            maxLength={ 20 }
-            value={ formData.caption }
-            onChange={(e) => setFormData({...formData, caption: e.target.value }) }
-            /> */}
     </div>
 )
 
