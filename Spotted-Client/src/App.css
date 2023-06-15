@@ -19,6 +19,8 @@ body {
   margin-bottom: 30px;
 }
 
+/* About Page */
+
 .about-text-container {
 margin-left: 10%;
 margin-right: 10%;
@@ -29,6 +31,12 @@ justify-content: center;
 .about-text {
   color: white;
   font-size: 20px;
+}
+
+/* ^About Page^ */
+
+.nothing-to-show {
+  text-align: center;
 }
 
 /* Nav bar */
