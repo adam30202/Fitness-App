@@ -10,6 +10,7 @@ const DisplayedPost = ({ post, deletePost }) => {
     const [ heart, setHeart ] = useState('')
     const user = useContext(UserContext);
 
+    /// Checks if user has liked the post to ensure that the heart is set to the right color
     useEffect(() => {
         if (post.likes.includes(user)) {
             setHeart('♥')
@@ -19,7 +20,7 @@ const DisplayedPost = ({ post, deletePost }) => {
     }, []);
 
     const _handleDelete = () => {
-        deletePost(post._id)
+        deletePost(post._id);
     }
 
     return (
@@ -33,8 +34,7 @@ const DisplayedPost = ({ post, deletePost }) => {
             </div>
 
             <LikeButton postId={ post._id } setLikes={ setLikes } heart={ heart } setHeart={ setHeart }/>
-            <p className="post-text">{ likes } Likes</p>
-            
+            <p className="post-text">{ likes } { likes === 1 ? (<span>Like</span>) : (<span>Likes</span>) }</p>
             <p className="post-text">{ post.caption }</p>
             <p className="post-text">#{ post.category }</p>
 

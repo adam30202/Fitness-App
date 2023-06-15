@@ -28,6 +28,8 @@ The purpose of making this web application was to practice and hone my full-stac
 
 -   User's can view their own posts, all other user posts, and using the GeoLocator feature, view posts made in their current city.
 
+-   User's can like posts. Their ID is added to the post's data to ensure one like per user.
+
 -   Full user authentication using JWT.
 
 -   A Wizard form for making/editing posts.

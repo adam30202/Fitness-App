@@ -52,12 +52,6 @@ const Register = ({ setIsLoggedIn }) => {
 
             <Form onSubmit={(e)=> _handleSubmit(e)} className="w-96">
                 <h2 className="text-4xl font-bold justify-center flex dark:text-white">Register</h2>
-                {/* {register ? (
-                    <p className="text-success">You have signed up successfully</p>
-                    ) : (
-                    <p className="text-danger">Please sign up</p>
-                    )}
-                     */}
 
                 <Form.Group className="mb-2 dark:text-white">
                     <Form.Label>Username</Form.Label>
