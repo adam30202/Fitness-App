@@ -6,8 +6,11 @@
   justify-content: center;  
 } 
 
+html {
+  background-color: rgb(193, 202, 255);
+}
+
 body {
-  /* background-color: rgb(193, 202, 255); */
   margin: 0;
   padding: 0;
 }
