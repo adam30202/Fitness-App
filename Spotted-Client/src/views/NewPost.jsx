@@ -26,7 +26,7 @@ const NewPost = () => {
 
   return (
     <div>
-      <h1 className="view-title">New Post</h1>
+      <h1 className="view-title dark:text-white">New Post</h1>
         <Form submitPost={ submitNewPost }/>
     </div>
   );

@@ -37,7 +37,7 @@ const AllPosts = () => {
 
     return (
         <div className="container">
-            <h1 className="view-title">All Posts</h1>
+            <h1 className="view-title dark:text-white">All Posts</h1>
             { posts && (posts.map((post) => <DisplayedPost post={ post } deletePost={ deletePost }key={ post._id }/> ))}
         </div>
     )

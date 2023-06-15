@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
 import GeoLocation from "../components/GeoLocation";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const SpottedNearYou = () => {
  
@@ -41,12 +42,14 @@ const SpottedNearYou = () => {
     return (
         <div className="container">
             <GeoLocation setLocation={ setLocation }/>
-            <h1 className="view-title">Spotted in 
+            <h1 className="view-title dark:text-white">Spotted in
                 { location ? (
                     <span> { location }</span>
                 ) : (
-                    <span> ...</span>
-                ) }
+                    <span>
+                    ... <LoadingSpinner />
+                    </span>
+                )}
             </h1>
             { posts && (posts.map((post) => <DisplayedPost post={ post } deletePost={ deletePost }key={ post._id }/> ))}
         </div>

@@ -15,8 +15,6 @@ const Form = ({ post, submitPost }) => {
     const userId = decodedPayload.userId;
     const username = decodedPayload.userUsername;
 
-    console.log(username)
-
     const [ page, setPage ] = useState(0);
     const [location, setLocation] = useState('');
     //// This state object will be used to set the post data. It will then be sent to the backend.
@@ -95,6 +93,7 @@ return (
                         console.log(formData)
                         console.log(location)
                         }}
+                    disabled={ !formData.image }
                     >
                     { page === 2 ? "Submit!" : "Next" }
                 </button>
