@@ -75,7 +75,8 @@ app.post("/new-post", (req, res) => {
         category: req.body.category,
         caption: req.body.caption,
         location: req.body.location,
-        author: req.body.author,
+        author: req.body.author, 
+        username: req.body.username, 
     });
     post
         .save()
@@ -105,6 +106,14 @@ app.get("/allposts", (req, res) => {
 ///// Gets all of the user's posts
 app.get("/myposts", (req, res) => {
     Post.find({author: req.query.author}, (error, posts) => {
+        if (error) res.status(400).send(error);
+        res.status(200).json(posts);
+    })
+});
+
+///// Gets all posts near the user's current location
+app.get("/spotted-near-you", (req, res) => {
+    Post.find({location: req.query.location}, (error, posts) => {
         if (error) res.status(400).send(error);
         res.status(200).json(posts);
     })

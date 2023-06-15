@@ -2,26 +2,19 @@ import DisplayedPost from "../components/DisplayedPost";
 import axios from "axios";
 import { useState, useEffect, useContext } from "react";
 import { UserContext } from "../App";
-import Cookies from "universal-cookie";
+import GeoLocation from "../components/GeoLocation";
 
-const MyPosts = () => {
-
+const SpottedNearYou = () => {
+ 
     const user = useContext(UserContext);
     const [ posts, setPosts ] = useState([]);
+    const [ location, setLocation ] = useState('');
 
-    // const cookies = new Cookies();
-    // const token = cookies.get("TOKEN")
-    // const payloadBase64Url = token.split('.')[1];
-    // const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
-    // const userId = decodedPayload.userId
-
-    ///// Gets all of the user's posts
     useEffect(() => {
-        if (!user) return
-        console.log(user)
+        if (!location) return
         axios
-            .get("http://localhost:3000/myposts", {
-                params: { author: user }
+            .get("http://localhost:3000/spotted-near-you", {
+                params: { location: location }
             })
             .then((response) => {
                 // Sorts posts in from newest to oldest
@@ -31,10 +24,8 @@ const MyPosts = () => {
             .catch((error) => {
                 console.error(error);
             });
-    }, [user]);
-    console.log(posts, user)
+    }, [location]);
 
-    ///// Deletes a post
     const deletePost = (postId) => {
         axios.delete('http://localhost:3000/myposts' + postId )
         .then((result) => {
@@ -49,10 +40,17 @@ const MyPosts = () => {
 
     return (
         <div className="container">
-            <h1 className="view-title">My Posts</h1>
+            <GeoLocation setLocation={ setLocation }/>
+            <h1 className="view-title">Spotted in 
+                { location ? (
+                    <span> { location }</span>
+                ) : (
+                    <span> ...</span>
+                ) }
+            </h1>
             { posts && (posts.map((post) => <DisplayedPost post={ post } deletePost={ deletePost }key={ post._id }/> ))}
         </div>
-    );
+    )
 }
-
-export default MyPosts;
+ 
+export default SpottedNearYou;

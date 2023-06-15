@@ -1,6 +1,6 @@
 import React from "react";
 
-const CategoryStep = ({ formData, setFormData }) => {
+const CategoryStep = ({ formData, setFormData, location }) => {
 
 return (
     <div className='category-container'>
@@ -11,7 +11,7 @@ return (
             type="text"
             placeholder="write a category"
             value={ formData.category }
-            onChange={(e) => setFormData({...formData, category: e.target.value }) }
+            onChange={(e) => setFormData({...formData, category: e.target.value, location: location }) }
             />
     </div>
 )

@@ -32,13 +32,13 @@ const Navbar = ({ setIsLoggedIn }) => {
                     <Link to="/allposts">All Posts</Link>
                 </li>
                 <li>
-                    <Link to="/trending">Trending</Link>
-                </li>
-                <li>
-                    <Link to="/post-spotted">Post Spotted</Link>
+                    <Link to="/spotted-near-you">Spotted Near You</Link>
                 </li>
                 <li>
                     <Link to="/myposts">My Posts</Link>
+                </li>
+                <li>
+                    <Link to="/post-spotted">Post Spotted</Link>
                 </li>
                 <li>
                     <a href="" onClick={() => logout()}>Sign Out</a>

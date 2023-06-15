@@ -29,7 +29,12 @@ const PostSchema = new Schema({
     author: {
         type: mongoose.ObjectId,
         ref: 'User',
-        required: [true, "User must be assigned to post."]
+        required: [true, "UserId must be assigned to post."],
+    
+    },
+    username: {
+        type: String,
+        required: [true, "Username must be assigned to post."],
     },
     createdAt: {
         type: Date,

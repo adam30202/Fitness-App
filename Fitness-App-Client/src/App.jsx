@@ -6,11 +6,13 @@ import AllPosts from './views/AllPosts';
 import NewPost from "./views/NewPost";
 import EditPost from './views/EditPost';
 import MyPosts from './views/MyPosts';
+import SpottedNearYou from './views/SpottedNearYou';
 import Navbar from './components/Navbar';
 import ProtectedRoutes from "./utils/ProtectedRoutes";
 import { Routes, Route } from "react-router-dom";
 import { useEffect, createContext, useState } from 'react';
 import Cookies from "universal-cookie";
+
 
 export const UserContext = createContext();
 
@@ -35,16 +37,17 @@ function App() {
   return (
     <> 
       <Navbar setIsLoggedIn={ setIsLoggedIn }/>
-      <UserContext.Provider value={user}>
+      <UserContext.Provider value={ user }>
         <Routes>
           <Route element={<ProtectedRoutes />}>
-            <Route element={<AllPosts/>} path="/allposts"/>
-            <Route element={<NewPost/>} path="/post-spotted"/>
-            <Route element={<EditPost/>} path="/edit-spotted"/>
-            <Route element={<MyPosts/>} path="/myposts"/>
+            <Route element={<AllPosts />} path="/allposts"/>
+            <Route element={<SpottedNearYou />} path="/spotted-near-you"/>
+            <Route element={<NewPost />} path="/post-spotted"/>
+            <Route element={<EditPost />} path="/edit-spotted"/>
+            <Route element={<MyPosts />} path="/myposts"/>
           </Route>
-          <Route element={<Login setIsLoggedIn={ setIsLoggedIn }/>} path="/login" exact/>
-          <Route element={<Register setIsLoggedIn={ setIsLoggedIn }/>} path="/sign-up"/>
+          <Route element={<Login setIsLoggedIn={ setIsLoggedIn } />} path="/login" exact/>
+          <Route element={<Register setIsLoggedIn={ setIsLoggedIn } />} path="/sign-up"/>
           <Route element={<Home />} path="/"/>
         </Routes>
       </UserContext.Provider>

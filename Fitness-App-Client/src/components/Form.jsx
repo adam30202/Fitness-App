@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
 import ImageStep from "./ImageStep";
 import CaptionStep from "./CaptionStep";
 import CategoryStep from "./CategoryStep";
@@ -13,10 +12,10 @@ const Form = ({ post, submitPost }) => {
     const token = cookies.get("TOKEN")
     const payloadBase64Url = token.split('.')[1];
     const decodedPayload = JSON.parse(window.atob(payloadBase64Url));
-    const userId = decodedPayload.userId
-    const userLocation = decodedPayload.userLocation
+    const userId = decodedPayload.userId;
+    const username = decodedPayload.userUsername;
 
-    // console.log(userId, userLocation)
+    console.log(username)
 
     const [ page, setPage ] = useState(0);
     const [location, setLocation] = useState('');
@@ -27,9 +26,10 @@ const Form = ({ post, submitPost }) => {
         category: '',
         location: '',
         author: userId,
+        username: username,
     });
 
-    //////// If the user is editing a post, the formData will be prefilled with that post's data, else, only the user's current location and ID will be set. This useEffect also gives time for the GeoLocator to get the user's location at time of posting.
+    //////// If the user is editing a post, the formData will be prefilled with that post's data
     useEffect(() => {
         if (post) {
             setFormData({
@@ -37,18 +37,11 @@ const Form = ({ post, submitPost }) => {
                 caption: post.caption,
                 category: post.category,
                 location: post.location,
-                author: userId
-            })
-        } else {
-            setFormData({
-                image: '',
-                caption: '',
-                category: '',
-                location: location,
-                author: userId
-            })
-        }
-    }, [post, location]);
+                author: userId,
+                username: username,
+            });
+        } 
+    }, [post]);
 
     const _handleSubmit = (e) => {
         e.preventDefault();
@@ -65,7 +58,7 @@ const Form = ({ post, submitPost }) => {
         } else if (page === 1) {
             return <CaptionStep formData={ formData }  setFormData={ setFormData }/>
         } else if (page === 2) {
-            return <CategoryStep formData={ formData }  setFormData={ setFormData }/>
+            return <CategoryStep formData={ formData }  setFormData={ setFormData } location={ location }/>
         }
     }
 

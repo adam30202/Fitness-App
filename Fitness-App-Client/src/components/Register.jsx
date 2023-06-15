@@ -92,19 +92,7 @@ const Register = ({ setIsLoggedIn }) => {
                         placeholder="Password"
                     />
                 </Form.Group>
-
-                {/* <Form.Group className="mb-3">
-                    <Form.Label>Location</Form.Label>
-                    <Form.Control
-                        type="text"
-                        name="location"
-                        value={ location }
-                        onChange={(e) => setLocation(e.target.value)}
-                        placeholder="Your city"
-                    />
-                </Form.Group> */}
-
-                
+           
                 <Button
                     variant="primary"
                     type="submit"

@@ -24,19 +24,25 @@ const DisplayedPost = ({ post, deletePost }) => {
 
     return (
         <div className="post-frame">
+            <div className="post-headings">
+                <p className="post-text">By <span className="italic">{ post.username }</span></p>
+                <p className="post-location">Spotted in <span className="italic">{ post.location }</span></p> 
+            </div>
             <div className="image-container">
                 <img src={ post.image } className="post-image"/>
             </div>
+
             <LikeButton postId={ post._id } setLikes={ setLikes } heart={ heart } setHeart={ setHeart }/>
             <p className="post-text">{ likes } Likes</p>
-            <p className="post-text">{ post.caption }</p>
-            <p className="post-text">Category: { post.category }</p>
             
+            <p className="post-text">{ post.caption }</p>
+            <p className="post-text">#{ post.category }</p>
+
             { post.author === user &&
-            <div>
-            <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit Spotted</Link>
-            <Link onClick={ _handleDelete }>Delete Spotted</Link>
-            </div>
+                <div className="links-container">
+                    <Link to={{pathname: "/edit-spotted", search: post._id }}>Edit</Link>
+                    <Link onClick={ _handleDelete }>Delete</Link>
+                </div>
             }
 
         </div>
