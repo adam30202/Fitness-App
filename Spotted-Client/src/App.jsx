@@ -13,7 +13,6 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect, createContext, useState } from 'react';
 import Cookies from "universal-cookie";
 
-
 export const UserContext = createContext();
 
 function App() {

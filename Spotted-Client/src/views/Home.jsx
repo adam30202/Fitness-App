@@ -1,7 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "../App"
 
 const Home = () => {
 
+  const user = useContext(UserContext);
   const navigate = useNavigate();
 
   return (
@@ -15,12 +18,14 @@ const Home = () => {
       <br/>
       <button 
         type="button" 
-        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        onClick={() => navigate("/post-spotted")}
+        className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-bg px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        onClick={() => {
+          user ? navigate("/post-spotted") :
+          navigate("/sign-up")
+        }}
       >
-        Make you first post now!
+        Make your first post now!
       </button>
-
     </div>
   );
 }

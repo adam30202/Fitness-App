@@ -46,11 +46,11 @@ const Login = ({ setIsLoggedIn }) => {
         <div className="flex justify-center h-screen">
             
             <Form onSubmit={(e)=> _handleSubmit(e)} className="w-96">
-                <h2 className="text-4xl font-bold justify-center flex">Login</h2>
+                <h2 className="text-4xl font-bold justify-center flex dark:text-white">Login</h2>
                 {login === false && (
                     <p className="text-danger justify-center flex">Incorrect password or email</p>
                     )}
-                <Form.Group controlId="formBasicEmail" className="mb-2">
+                <Form.Group controlId="formBasicEmail" className="mb-2 dark:text-white">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
@@ -61,7 +61,7 @@ const Login = ({ setIsLoggedIn }) => {
                     />
                 </Form.Group>
 
-                <Form.Group controlId="formBasicPassword" className="mb-3">
+                <Form.Group controlId="formBasicPassword" className="mb-3 dark:text-white">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"

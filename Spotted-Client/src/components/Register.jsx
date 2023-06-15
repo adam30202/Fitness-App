@@ -51,15 +51,15 @@ const Register = ({ setIsLoggedIn }) => {
             <GeoLocation setLocation={ setLocation }/>
 
             <Form onSubmit={(e)=> _handleSubmit(e)} className="w-96">
-                <h2 className="text-4xl font-bold justify-center flex">Register</h2>
-                {register ? (
+                <h2 className="text-4xl font-bold justify-center flex dark:text-white">Register</h2>
+                {/* {register ? (
                     <p className="text-success">You have signed up successfully</p>
                     ) : (
                     <p className="text-danger">Please sign up</p>
                     )}
-                    
+                     */}
 
-                <Form.Group className="mb-2">
+                <Form.Group className="mb-2 dark:text-white">
                     <Form.Label>Username</Form.Label>
                     <Form.Control
                         type="text"
@@ -70,7 +70,7 @@ const Register = ({ setIsLoggedIn }) => {
                     />
                 </Form.Group>
 
-                <Form.Group className="mb-2">
+                <Form.Group className="mb-2 dark:text-white">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                         type="email"
@@ -82,11 +82,12 @@ const Register = ({ setIsLoggedIn }) => {
                 </Form.Group>
 
                 
-                <Form.Group className="mb-2">
+                <Form.Group className="mb-2 dark:text-white">
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                         type="password"
                         name="password"
+                        minLength={ 8 }
                         value={ password }
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
