@@ -19,9 +19,16 @@ body {
   margin-bottom: 30px;
 }
 
+.about-text-container {
+margin-left: 10%;
+margin-right: 10%;
+text-align: center;
+justify-content: center;
+}
+
 .about-text {
-  margin: 0 auto;
-  justify-self: center;
+  color: white;
+  font-size: 20px;
 }
 
 /* Nav bar */
