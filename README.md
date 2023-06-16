@@ -12,7 +12,7 @@ The purpose of making this web application was to practice and hone my full-stac
 
 -   Express.js: For the backend I used Express.js. It housed my RESTful APIs, the MongoDB connections and schema, and user authentication.
 
--   JWT: JSON Web Tokens are used to enable full user authentication. Within the tokens are a payload that is decrypted to retrieve information needed to save posts to MongoDb (user IDs and usernames).
+-   JSON Web Tokens: JWTs are used to enable full user authentication.
 
 -   Bcrypt: When saving passwords to the database, Bcrypt hashes the passwords for secure storage.
 
